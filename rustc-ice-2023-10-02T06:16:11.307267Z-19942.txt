@@ -1,0 +1,28 @@
+thread 'rustc' panicked at compiler/rustc_middle/src/util/bug.rs:36:26:
+compiler/rustc_codegen_llvm/src/llvm_util.rs:603:9: target feature ` -sse` must begin with a `+` or `-`
+stack backtrace:
+   0:        0x1058564ac - std::backtrace::Backtrace::create::h29017a81d55ee848
+   1:        0x10dddb214 - <alloc[fd7c3b587ee2c053]::boxed::Box<rustc_driver_impl[8ff316bcc50a820c]::install_ice_hook::{closure#0}> as core[ea468bd82d8b362a]::ops::function::Fn<(&dyn for<'a, 'b> core[ea468bd82d8b362a]::ops::function::Fn<(&'a core[ea468bd82d8b362a]::panic::panic_info::PanicInfo<'b>,), Output = ()> + core[ea468bd82d8b362a]::marker::Send + core[ea468bd82d8b362a]::marker::Sync, &core[ea468bd82d8b362a]::panic::panic_info::PanicInfo)>>::call
+   2:        0x10586f65c - std::panicking::rust_panic_with_hook::h0d312b6f622f29f3
+   3:        0x111d07f70 - std[8f5f165e60d55221]::panicking::begin_panic::<alloc[fd7c3b587ee2c053]::string::String>::{closure#0}
+   4:        0x111d07e10 - std[8f5f165e60d55221]::sys_common::backtrace::__rust_end_short_backtrace::<std[8f5f165e60d55221]::panicking::begin_panic<alloc[fd7c3b587ee2c053]::string::String>::{closure#0}, !>
+   5:        0x11230deb4 - std[8f5f165e60d55221]::panicking::begin_panic::<alloc[fd7c3b587ee2c053]::string::String>
+   6:        0x111dbe8a0 - rustc_middle[68bad617dc729d09]::util::bug::opt_span_bug_fmt::<rustc_span[59d91b7aa28f1b44]::span_encoding::Span>::{closure#0}
+   7:        0x111dbb490 - rustc_middle[68bad617dc729d09]::ty::context::tls::with_opt::<rustc_middle[68bad617dc729d09]::util::bug::opt_span_bug_fmt<rustc_span[59d91b7aa28f1b44]::span_encoding::Span>::{closure#0}, !>::{closure#0}
+   8:        0x111dbb45c - rustc_middle[68bad617dc729d09]::ty::context::tls::with_context_opt::<rustc_middle[68bad617dc729d09]::ty::context::tls::with_opt<rustc_middle[68bad617dc729d09]::util::bug::opt_span_bug_fmt<rustc_span[59d91b7aa28f1b44]::span_encoding::Span>::{closure#0}, !>::{closure#0}, !>
+   9:        0x11230e174 - rustc_middle[68bad617dc729d09]::util::bug::bug_fmt
+  10:        0x10dfe5ed4 - rustc_codegen_llvm[87456e6abddd0f83]::llvm_util::backend_feature_name
+  11:        0x10dfaf618 - <alloc[fd7c3b587ee2c053]::vec::Vec<alloc[fd7c3b587ee2c053]::string::String> as alloc[fd7c3b587ee2c053]::vec::spec_extend::SpecExtend<alloc[fd7c3b587ee2c053]::string::String, core[ea468bd82d8b362a]::iter::adapters::map::Map<core[ea468bd82d8b362a]::iter::adapters::filter::Filter<core[ea468bd82d8b362a]::str::iter::Split<char>, rustc_codegen_llvm[87456e6abddd0f83]::llvm_util::global_llvm_features::{closure#1}>, <alloc[fd7c3b587ee2c053]::string::String as core[ea468bd82d8b362a]::convert::From<&str>>::from>>>::spec_extend
+  12:        0x10dfe5b90 - rustc_codegen_llvm[87456e6abddd0f83]::llvm_util::global_llvm_features
+  13:        0x10dfdce10 - rustc_codegen_llvm[87456e6abddd0f83]::back::write::create_informational_target_machine
+  14:        0x10dfe4c80 - rustc_codegen_llvm[87456e6abddd0f83]::llvm_util::target_features
+  15:        0x10df3be7c - rustc_interface[99192b1d4b599510]::util::add_configuration
+  16:        0x10df3c650 - rustc_interface[99192b1d4b599510]::util::create_session
+  17:        0x10ddd8e84 - std[8f5f165e60d55221]::sys_common::backtrace::__rust_begin_short_backtrace::<rustc_interface[99192b1d4b599510]::util::run_in_thread_with_globals<rustc_interface[99192b1d4b599510]::interface::run_compiler<core[ea468bd82d8b362a]::result::Result<(), rustc_span[59d91b7aa28f1b44]::ErrorGuaranteed>, rustc_driver_impl[8ff316bcc50a820c]::run_compiler::{closure#1}>::{closure#0}, core[ea468bd82d8b362a]::result::Result<(), rustc_span[59d91b7aa28f1b44]::ErrorGuaranteed>>::{closure#0}::{closure#0}, core[ea468bd82d8b362a]::result::Result<(), rustc_span[59d91b7aa28f1b44]::ErrorGuaranteed>>
+  18:        0x10ddda0dc - <<std[8f5f165e60d55221]::thread::Builder>::spawn_unchecked_<rustc_interface[99192b1d4b599510]::util::run_in_thread_with_globals<rustc_interface[99192b1d4b599510]::interface::run_compiler<core[ea468bd82d8b362a]::result::Result<(), rustc_span[59d91b7aa28f1b44]::ErrorGuaranteed>, rustc_driver_impl[8ff316bcc50a820c]::run_compiler::{closure#1}>::{closure#0}, core[ea468bd82d8b362a]::result::Result<(), rustc_span[59d91b7aa28f1b44]::ErrorGuaranteed>>::{closure#0}::{closure#0}, core[ea468bd82d8b362a]::result::Result<(), rustc_span[59d91b7aa28f1b44]::ErrorGuaranteed>>::{closure#1} as core[ea468bd82d8b362a]::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  19:        0x105878504 - std::sys::unix::thread::Thread::new::thread_start::hed48982687743427
+  20:        0x180b30034 - __pthread_joiner_wake
+
+
+rustc version: 1.75.0-nightly (e0d7ed1f4 2023-10-01)
+platform: aarch64-apple-darwin
