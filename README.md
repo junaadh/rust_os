@@ -1,7 +1,31 @@
 ## Basic OS built using rust
 
-- on apple silicon os runs by emulating an x86_64 machine
-- qemu-system-x86_64 doesnt't work on m2 chip as instructed
-- can run on apple silicon using UTM
-- create a virtual machine with UEFI boot off
-- load rust-bin as a disk image of interface IDE
+- run in vm using qemu
+- on apple silicon macs need UTM
+
+### Commads
+
+- to compile and run target
+```
+  cargo run
+```
+
+- to run tests
+```
+  cargo test
+```
+
+- to manually build and spin up a vm
+```
+  cargo bootimage
+```
+
+  * non-apple silicon  
+```
+  qemu-system-x86_64 -drive format=raw,file=target/x86_64-rust_os/debug/bootimage-rust_os.bin
+```
+  
+  * apple silicon
+```
+  qemu-system-x86_64 -L /Applications/UTM.app/Contents/Resources/qemu -drive format=raw,file=target/x86_64-rust_os/debug/bootimage-rust_os.bin
+```
