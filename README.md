@@ -5,6 +5,11 @@
 
 ### Commads
 
+- install bootimage
+```
+  cargo install bootimage
+```
+
 - to compile and run target
 ```
   cargo run
